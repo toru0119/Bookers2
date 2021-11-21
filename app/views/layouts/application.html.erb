@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://kit.fontawesome.com/7b0322a2a0.js" crossorigin="anonymous"></script>
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,24 +11,55 @@
   </head>
 
   <body>
+    <header>
     <% if user_signed_in? %>
       <li>
-        <%= link_to '投稿フォーム', books_path %>
+      <%= link_to 'Bookers', root_path %>
+    　</li>
+    　<li>
+    　<%= link_to 'Home', user_path(current_user.id) %>
       </li>
+      <li>
+      <%= link_to 'Users', user_path %>
+    　</li>
+    　<li>
+      <%= link_to 'Books', books_path %>
+    　</li>
       <li>
         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       </li>
-      <li>
-      <%= link_to 'マイページ', user_path(current_user.id) %>
-    　</li>
     <% else %>
       <li>
-        <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to 'Bookers', root_path %>
+    　</li>
+    　<li>
+      <%= link_to 'Home', root_path %>
+    　</li>
+    　<li>
+      <%= link_to 'About', home_about_path %>
+    　</li>
+      <li>
+        <%= link_to "Sign up", new_user_registration_path %>
       </li>
       <li>
-        <%= link_to "ログイン", new_user_session_path %>
+        <%= link_to "Log in", new_user_session_path %>
       </li>
     <% end %>
+  </header>
+
+  <main>
     <%= yield %>
+  </main>
+
+  <footer>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
+    </div>
+  </footer>
   </body>
+
 </html>
