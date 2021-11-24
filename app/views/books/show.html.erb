@@ -1,9 +1,28 @@
-<h1>Book deta</h1>
-<div>
-  <p>Title：<%= @book.title %></p>
-  <p>Optinion：<%= @book.body %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
-  <% end %>
+<div class="col-md-8 offset-md-1">
+  <h2>Book detail</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+         <td>
+          
+         </td>
+         <td>
+           <%= link_to book_path(@book.id) do %>
+           <%= @book.title %>
+           <% end %>
+         </td>
+         <td>
+           <%= @book.body %>
+         </td>
+         <% if @book.user == current_user %>
+         <td>
+           <%= link_to "Edit", edit_book_path(current_user.id), class: "btn btn-sm btn-success" %>
+         </td>
+         <td>
+           <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger" %>
+         </td>
+         <% end %>
+      </tr>
+    </tbody>
+  </table>
 </div>
